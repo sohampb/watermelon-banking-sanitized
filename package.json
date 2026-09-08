@@ -1,0 +1,41 @@
+{
+  "name": "watermelon-banking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test:insurance:api": "playwright test -c automation/insurance-api-playwright/playwright.config.js",
+    "mcp:sfdc-flow": "node mcp/sfdc-flow-server.mjs",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:push": "prisma db push"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/nodemailer": "^7.0.11",
+    "@types/pdfkit": "^0.17.5",
+    "next": "^15.3.0",
+    "nodemailer": "^8.0.4",
+    "pdf-lib": "^1.17.1",
+    "pdfkit": "^0.18.0",
+    "prisma": "^6.6.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.2.2",
+    "xlsx": "^0.18.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.1",
+    "@types/react-dom": "^19.1.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.3"
+  }
+}

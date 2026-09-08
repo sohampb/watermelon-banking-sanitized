@@ -1,0 +1,714 @@
+openapi: 3.0.3
+info:
+  title: Watermelon Banking API
+  version: 1.0.0
+  summary: API specification for the Watermelon Banking demo application
+  description: |
+    This specification documents the banking-specific APIs implemented in the
+    Watermelon application. The API supports demo login, session-based
+    dashboard access, OTP-backed transfers, statement generation, transaction
+    lookup, and a lightweight admin funding flow.
+servers:
+  - url: https://your-watermelon-banking-host.example.com
+    description: Production
+  - url: http://localhost:3000
+    description: Local development
+tags:
+  - name: Authentication
+  - name: Dashboard
+  - name: Transfers
+  - name: Statements
+  - name: Transactions
+  - name: Admin
+components:
+  securitySchemes:
+    BankingSessionHeader:
+      type: apiKey
+      in: header
+      name: x-banking-session
+      description: |
+        Optional header-based session token. The banking app also uses the
+        `watermelon_banking_session` HTTP-only cookie set during login.
+    BankingOtpLookupApiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key accepted by the OTP lookup endpoint.
+  schemas:
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      required:
+        - username
+        - password
+        - captchaAnswer
+        - captchaLeft
+        - captchaRight
+      properties:
+        username:
+          type: string
+          example: bankinguser1
+        password:
+          type: string
+          example: password
+        disableCaptcha:
+          type: boolean
+          description: When true, captcha validation is skipped.
+          default: false
+        captchaAnswer:
+          type: number
+          example: 11
+        captchaLeft:
+          type: number
+          example: 6
+        captchaRight:
+          type: number
+          example: 5
+    LoginResponse:
+      type: object
+      required:
+        - success
+        - redirectTo
+        - sessionToken
+      properties:
+        success:
+          type: boolean
+          example: true
+        redirectTo:
+          type: string
+          example: /banking/dashboard
+        sessionToken:
+          type: string
+          description: Same session value also returned in the x-banking-session response header.
+    LogoutResponse:
+      type: object
+      required:
+        - success
+        - redirectTo
+      properties:
+        success:
+          type: boolean
+          example: true
+        redirectTo:
+          type: string
+          example: /banking
+    BankingAccountSummary:
+      type: object
+      required:
+        - username
+        - displayName
+        - email
+        - accountNumber
+        - balanceInCents
+        - balanceDisplay
+      properties:
+        username:
+          type: string
+          example: bankinguser1
+        displayName:
+          type: string
+          example: Banking User 1
+        email:
+          type: string
+          format: email
+          example: bankinguser1@watermelon.us
+        accountNumber:
+          type: string
+          example: WM-SAV-1001
+        balanceInCents:
+          type: integer
+          example: 21604
+        balanceDisplay:
+          type: string
+          example: $216.04
+    TransferDestination:
+      type: object
+      required:
+        - username
+        - displayName
+        - accountNumber
+      properties:
+        username:
+          type: string
+          example: bankinguser2
+        displayName:
+          type: string
+          example: Banking User 2
+        accountNumber:
+          type: string
+          example: WM-SAV-1002
+    BankingTransactionRow:
+      type: object
+      required:
+        - transactionId
+        - createdAt
+        - description
+        - transactionType
+        - direction
+        - counterparty
+        - amountInCents
+        - amountDisplay
+        - balanceAfterDisplay
+      properties:
+        transactionId:
+          type: string
+          example: TXN17751916142913055
+        createdAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+          example: Transfer to Banking User 2
+        transactionType:
+          type: string
+          example: TRANSFER
+        direction:
+          type: string
+          enum: [Credit, Debit]
+        counterparty:
+          type: string
+          example: Banking User 2
+        amountInCents:
+          type: integer
+          example: 5000
+        amountDisplay:
+          type: string
+          example: $50.00
+        balanceAfterInCents:
+          type:
+            - integer
+            - "null"
+          example: 16604
+        balanceAfterDisplay:
+          type: string
+          example: $166.04
+    BankingTransactionDetails:
+      allOf:
+        - $ref: "#/components/schemas/BankingTransactionRow"
+        - type: object
+          properties:
+            sourceAccountNumber:
+              type:
+                - string
+                - "null"
+              example: WM-SAV-1001
+            sourceUsername:
+              type:
+                - string
+                - "null"
+              example: bankinguser1
+            sourceDisplayName:
+              type:
+                - string
+                - "null"
+              example: Banking User 1
+            destinationAccountNumber:
+              type:
+                - string
+                - "null"
+              example: WM-SAV-1002
+            destinationUsername:
+              type:
+                - string
+                - "null"
+              example: bankinguser2
+            destinationDisplayName:
+              type:
+                - string
+                - "null"
+              example: Banking User 2
+            initiatedByUsername:
+              type:
+                - string
+                - "null"
+              example: bankinguser1
+            initiatedByDisplayName:
+              type:
+                - string
+                - "null"
+              example: Banking User 1
+            metadataJson:
+              type:
+                - string
+                - "null"
+    BankingDashboard:
+      type: object
+      required:
+        - user
+        - transferDestinations
+        - recentTransactions
+      properties:
+        user:
+          $ref: "#/components/schemas/BankingAccountSummary"
+        transferDestinations:
+          type: array
+          items:
+            $ref: "#/components/schemas/TransferDestination"
+        recentTransactions:
+          type: array
+          items:
+            $ref: "#/components/schemas/BankingTransactionRow"
+    DashboardResponse:
+      type: object
+      required:
+        - dashboard
+      properties:
+        dashboard:
+          $ref: "#/components/schemas/BankingDashboard"
+    SendOtpRequest:
+      type: object
+      required:
+        - recipientEmail
+        - destinationUsername
+        - amount
+      properties:
+        recipientEmail:
+          type: string
+          format: email
+          example: customer@example.com
+        destinationUsername:
+          type: string
+          example: bankinguser2
+        amount:
+          oneOf:
+            - type: number
+            - type: string
+          example: 50
+    SendOtpResponse:
+      type: object
+      required:
+        - message
+        - delivered
+        - transactionId
+      properties:
+        message:
+          type: string
+          example: OTP sent for transaction TXN17751916142913055.
+        delivered:
+          type: boolean
+          example: true
+        transactionId:
+          type: string
+          example: TXN17751916142913055
+    ExecuteTransferRequest:
+      type: object
+      required:
+        - recipientEmail
+        - destinationUsername
+        - amount
+        - otp
+      properties:
+        recipientEmail:
+          type: string
+          format: email
+        destinationUsername:
+          type: string
+        amount:
+          oneOf:
+            - type: number
+            - type: string
+        otp:
+          type: string
+          example: "123456"
+    ExecuteTransferResponse:
+      type: object
+      required:
+        - message
+        - transactionId
+        - dashboard
+      properties:
+        message:
+          type: string
+          example: Transfer completed successfully.
+        transactionId:
+          type: string
+          example: TXN17751916142913055
+        dashboard:
+          $ref: "#/components/schemas/BankingDashboard"
+    StatementRequest:
+      type: object
+      required:
+        - transactionCount
+      properties:
+        transactionCount:
+          type: integer
+          minimum: 1
+          maximum: 50
+          example: 5
+        email:
+          type: string
+          format: email
+          example: customer@example.com
+    StatementResponse:
+      type: object
+      required:
+        - rows
+        - fileName
+        - downloadBase64
+        - emailed
+      properties:
+        rows:
+          type: array
+          items:
+            $ref: "#/components/schemas/BankingTransactionRow"
+        fileName:
+          type: string
+          example: watermelon-banking-statement-bankinguser1-1775300000000.xlsx
+        downloadBase64:
+          type: string
+          description: Base64-encoded XLSX workbook content.
+        emailed:
+          type: boolean
+          example: true
+    TransactionResponse:
+      type: object
+      required:
+        - transaction
+      properties:
+        transaction:
+          $ref: "#/components/schemas/BankingTransactionDetails"
+    AdminAccountsResponse:
+      type: object
+      required:
+        - accounts
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/BankingAccountSummary"
+    AdminFundRequest:
+      type: object
+      required:
+        - username
+        - amount
+      properties:
+        username:
+          type: string
+          example: bankinguser1
+        amount:
+          oneOf:
+            - type: number
+            - type: string
+          example: 100
+    AdminFundResponse:
+      type: object
+      required:
+        - message
+        - accounts
+      properties:
+        message:
+          type: string
+          example: Funds added successfully.
+        accounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/BankingAccountSummary"
+    TransferOtpLookupResponse:
+      type: object
+      required:
+        - transactionId
+        - otp
+        - recipientEmail
+        - expiresAt
+      properties:
+        transactionId:
+          type: string
+          example: TXN17751916142913055
+        otp:
+          type: string
+          example: "123456"
+        recipientEmail:
+          type: string
+          format: email
+          example: customer@example.com
+        expiresAt:
+          type: string
+          format: date-time
+paths:
+  /api/banking/login:
+    post:
+      tags: [Authentication]
+      summary: Sign in to the banking app
+      description: Validates demo credentials, validates captcha unless disabled, and creates the banking session.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+      responses:
+        "200":
+          description: Login successful
+          headers:
+            x-banking-session:
+              description: Session token mirrored from the cookie-based session.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "400":
+          description: Validation or captcha error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Unexpected login failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/logout:
+    post:
+      tags: [Authentication]
+      summary: Sign out of the banking app
+      responses:
+        "200":
+          description: Logout successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutResponse"
+  /api/banking/dashboard:
+    get:
+      tags: [Dashboard]
+      summary: Fetch dashboard data for the signed-in banking user
+      security:
+        - BankingSessionHeader: []
+      responses:
+        "200":
+          description: Dashboard returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DashboardResponse"
+        "401":
+          description: No valid session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Unexpected dashboard failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/transfer/send-otp:
+    post:
+      tags: [Transfers]
+      summary: Generate and send a transfer OTP
+      security:
+        - BankingSessionHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SendOtpRequest"
+      responses:
+        "200":
+          description: OTP created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SendOtpResponse"
+        "400":
+          description: Validation or business rule error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: No valid session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/transfer:
+    post:
+      tags: [Transfers]
+      summary: Complete a transfer using a valid OTP
+      security:
+        - BankingSessionHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExecuteTransferRequest"
+      responses:
+        "200":
+          description: Transfer successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExecuteTransferResponse"
+        "400":
+          description: Validation, OTP, balance, or business rule error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: No valid session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/transfer/otp:
+    get:
+      tags: [Transfers]
+      summary: Look up the active OTP for a transfer transaction
+      description: |
+        This endpoint accepts either a banking session or an API key. It is
+        primarily intended for automation and controlled test flows.
+      security:
+        - BankingSessionHeader: []
+        - BankingOtpLookupApiKey: []
+      parameters:
+        - in: query
+          name: transactionId
+          required: true
+          schema:
+            type: string
+          description: Transaction identifier returned by the send-otp endpoint.
+      responses:
+        "200":
+          description: Active OTP details returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferOtpLookupResponse"
+        "401":
+          description: Neither a valid session nor a valid API key was provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "404":
+          description: No active OTP found for that transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/statement:
+    post:
+      tags: [Statements]
+      summary: Generate a recent account statement workbook
+      security:
+        - BankingSessionHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StatementRequest"
+      responses:
+        "200":
+          description: Statement generated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatementResponse"
+        "400":
+          description: Validation or generation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "401":
+          description: No valid session
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/transactions/{transactionId}:
+    get:
+      tags: [Transactions]
+      summary: Fetch transaction details by transaction ID
+      parameters:
+        - in: path
+          name: transactionId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Transaction found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionResponse"
+        "404":
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "400":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/admin/accounts:
+    get:
+      tags: [Admin]
+      summary: Fetch demo banking accounts for the admin funding panel
+      responses:
+        "200":
+          description: Accounts returned
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminAccountsResponse"
+        "500":
+          description: Unexpected admin lookup failure
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+  /api/banking/admin/fund:
+    post:
+      tags: [Admin]
+      summary: Add funds to a seeded demo account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdminFundRequest"
+      responses:
+        "200":
+          description: Funds added
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminFundResponse"
+        "400":
+          description: Validation or funding error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"

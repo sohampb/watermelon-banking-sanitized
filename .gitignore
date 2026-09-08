@@ -1,0 +1,13 @@
+.next
+node_modules
+.env
+.env.local
+dist
+coverage
+*.log
+.vercel
+CODEX_HANDOFF_PRIVATE.md
+cookies.txt
+outputs/insurance-documentation/
+tsconfig.tsbuildinfo
+watermelon-training-platform/

@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Watermelon Banking",
+    "slug": "banking-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "../apply-insurance-mobile/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "../apply-insurance-mobile/assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.watermelon.banking",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "../apply-insurance-mobile/assets/android-icon-foreground.png",
+        "backgroundImage": "../apply-insurance-mobile/assets/android-icon-background.png",
+        "monochromeImage": "../apply-insurance-mobile/assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "../apply-insurance-mobile/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "386ccf91-dddc-4372-8025-6611f745b011"
+      }
+    },
+    "owner": "sohampb"
+  }
+}

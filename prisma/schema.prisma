@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model BankingAppAccess {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("banking_app_access_table")
+}
+
+model BankUser {
+  id           String            @id @default(cuid())
+  username     String            @unique
+  password     String
+  displayName  String
+  email        String
+  account      BankAccount?
+  initiatedTxs BankTransaction[] @relation("InitiatedTransactions")
+  otps         BankOtp[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+model BankAccount {
+  id                   String            @id @default(cuid())
+  accountNumber        String            @unique
+  balanceInCents       Int               @default(0)
+  userId               String            @unique
+  user                 BankUser          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  outgoingTransactions BankTransaction[] @relation("SourceTransactions")
+  incomingTransactions BankTransaction[] @relation("DestinationTransactions")
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+}
+
+model BankTransaction {
+  id                             String       @id @default(cuid())
+  transactionId                  String       @unique
+  transactionType                String
+  amountInCents                  Int
+  description                    String
+  sourceAccountId                String?
+  destinationAccountId           String?
+  initiatedByUserId              String?
+  sourceBalanceAfterInCents      Int?
+  destinationBalanceAfterInCents Int?
+  metadataJson                   String?
+  createdAt                      DateTime     @default(now())
+  sourceAccount                  BankAccount? @relation("SourceTransactions", fields: [sourceAccountId], references: [id], onDelete: SetNull)
+  destinationAccount             BankAccount? @relation("DestinationTransactions", fields: [destinationAccountId], references: [id], onDelete: SetNull)
+  initiatedByUser                BankUser?    @relation("InitiatedTransactions", fields: [initiatedByUserId], references: [id], onDelete: SetNull)
+}
+
+model BankOtp {
+  id             String    @id @default(cuid())
+  code           String
+  purpose        String
+  recipientEmail String
+  expiresAt      DateTime
+  consumedAt     DateTime?
+  userId         String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  user           BankUser  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

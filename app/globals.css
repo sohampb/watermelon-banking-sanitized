@@ -1,0 +1,2565 @@
+@import "tailwindcss";
+
+:root {
+  --app-bg: #f4f6f8;
+  --panel: #f8fafc;
+  --line: #d8e1e8;
+  --soft: #e8f2f0;
+  --soft-text: #285a52;
+  --card: #fffdf7;
+  --text: #1e2922;
+  --muted: #617266;
+  --brand: #20844a;
+  --brand-dark: #145d32;
+  --accent: #e65562;
+  --accent-dark: #b3313d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(148, 179, 185, 0.18), transparent 24%),
+    linear-gradient(180deg, #f6f8fa 0%, #eef3f7 100%);
+  color: #0f172a;
+  font-family:
+    ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #d2e5e1;
+  color: #0f172a;
+}
+
+.banking-login-page,
+.banking-admin-page {
+  min-height: 100vh;
+  padding: 36px;
+  background: #f7faf9;
+  color: #202428;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.banking-dashboard-page {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  min-height: 100vh;
+  background: #eef2f1;
+  color: #202428;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.banking-login-header,
+.banking-admin-header,
+.banking-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.banking-login-title,
+.banking-topbar-copy {
+  max-width: 680px;
+}
+
+.banking-kicker {
+  margin: 0 0 8px;
+  color: #08725f;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.banking-login-header h1,
+.banking-admin-header h1,
+.banking-topbar h1,
+.banking-section-heading h2,
+.banking-info-card h2,
+.banking-form-heading h2,
+.banking-hero-copy h2 {
+  margin: 0;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+  color: #202428;
+}
+
+.banking-login-subtitle,
+.banking-subtle-text,
+.banking-panel-label,
+.banking-field span,
+.banking-info-card p,
+.banking-login-copy,
+.banking-form-heading p,
+.banking-login-security-note {
+  color: #5e6865;
+}
+
+.banking-login-card {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.95fr) minmax(420px, 1.05fr);
+  gap: 24px;
+  margin: 40px 0 0;
+  max-width: 1312px;
+}
+
+.banking-login-panel,
+.banking-login-form,
+.banking-section-card,
+.banking-info-card,
+.banking-hero-card,
+.banking-admin-account-card {
+  border-radius: 18px;
+  border: 1px solid #dce3df;
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.banking-login-panel,
+.banking-login-form,
+.banking-section-card,
+.banking-hero-card {
+  padding: 32px;
+}
+
+.banking-login-panel {
+  min-height: 514px;
+  display: grid;
+  align-content: stretch;
+  background: linear-gradient(135deg, #154f43 0%, #0e3f35 100%);
+  color: #f7fbf9;
+}
+
+.banking-login-panel .banking-panel-label,
+.banking-login-panel .banking-login-copy,
+.banking-login-panel .banking-login-points div,
+.banking-login-panel .banking-login-metric span {
+  color: rgba(239, 246, 255, 0.82);
+}
+
+.banking-login-panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  align-self: start;
+}
+
+.banking-login-badge,
+.banking-status-pill,
+.banking-card-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.banking-login-badge {
+  min-height: 30px;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.banking-login-metric {
+  display: grid;
+  gap: 6px;
+  margin: 26px 0 22px;
+}
+
+.banking-login-metric strong {
+  font-size: 1.9rem;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.banking-login-credentials {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.banking-credential-chip {
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.banking-login-points {
+  display: grid;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.banking-login-points div {
+  padding-left: 18px;
+  position: relative;
+}
+
+.banking-login-points div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #8dd8c8;
+}
+
+.banking-app-access-page {
+  min-height: 100vh;
+  padding: 40px;
+  background: #f7faf9;
+  color: #202428;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.banking-app-access-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1312px;
+  margin: 0;
+}
+
+.banking-app-access-header h1 {
+  margin: 0;
+  color: #202428;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-size: clamp(2.75rem, 4vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.banking-app-access-card {
+  display: grid;
+  grid-template-columns: minmax(420px, 0.95fr) minmax(420px, 1.05fr);
+  gap: 24px;
+  align-items: stretch;
+  max-width: 1312px;
+  margin: 40px 0 0;
+}
+
+.banking-app-access-panel,
+.banking-app-access-form {
+  border-radius: 18px;
+  border: 1px solid #dce3df;
+  box-shadow: none;
+}
+
+.banking-app-access-panel {
+  display: grid;
+  min-height: 382px;
+  align-content: stretch;
+  gap: 22px;
+  padding: 36px;
+  background: linear-gradient(135deg, #154f43 0%, #0e3f35 100%);
+  color: #f7fbf9;
+}
+
+.banking-app-access-panel .banking-panel-label,
+.banking-app-access-panel .banking-login-points div,
+.banking-app-access-panel .banking-login-metric span {
+  color: rgba(239, 246, 255, 0.82);
+}
+
+.banking-app-access-form {
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  padding: 40px;
+  background: #ffffff;
+}
+
+.banking-app-access-form .banking-sign-in-button {
+  justify-self: end;
+  min-width: 180px;
+}
+
+.banking-login-form,
+.banking-transfer-form,
+.banking-statement-controls {
+  display: grid;
+  gap: 18px;
+}
+
+.banking-form-heading {
+  display: grid;
+  gap: 6px;
+}
+
+.banking-field {
+  display: grid;
+  gap: 8px;
+}
+
+.banking-field span {
+  color: #4f5a57;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.banking-field input,
+.banking-field select {
+  min-height: 50px;
+  border: 1px solid #d7dedb;
+  border-radius: 9px;
+  padding: 0 16px;
+  background: #fffdf9;
+  color: #202428;
+  font-size: 1rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.banking-field input:focus,
+.banking-field select:focus,
+.banking-captcha-input:focus {
+  outline: none;
+  border-color: #167762;
+  box-shadow: 0 0 0 4px rgba(22, 119, 98, 0.12);
+}
+
+.banking-captcha-block {
+  display: grid;
+  gap: 12px;
+}
+
+.banking-captcha-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.banking-captcha-box,
+.banking-captcha-input {
+  width: 52px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  border: 1px solid #d7dedb;
+  background: #f1f4f3;
+  color: #202428;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.banking-captcha-input {
+  padding: 0;
+  text-align: center;
+}
+
+.banking-captcha-symbol {
+  color: #446179;
+  font-weight: 700;
+}
+
+.banking-captcha-refresh {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d7dedb;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #167762;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.banking-forgot-link {
+  color: #6a7b8e;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.banking-login-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.banking-login-security-note {
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.banking-sign-in-button,
+.banking-primary-button,
+.banking-outline-button,
+.banking-outline-link,
+.banking-card-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 12px;
+  padding: 0 22px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.banking-sign-in-button,
+.banking-primary-button {
+  border: none;
+  color: #ffffff;
+  background: linear-gradient(135deg, #167762 0%, #0f5e4e 100%);
+  box-shadow: 0 10px 22px rgba(15, 94, 78, 0.2);
+}
+
+.banking-sign-in-button {
+  min-width: 160px;
+}
+
+.banking-outline-button,
+.banking-outline-link,
+.banking-card-link {
+  border: 1px solid #167762;
+  background: #ffffff;
+  color: #0f6b59;
+}
+
+.banking-outline-link {
+  min-width: 124px;
+}
+
+.banking-sidebar {
+  padding: 24px 18px;
+  border-right: 1px solid #d8dfdc;
+  background: #ffffff;
+}
+
+.banking-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+  color: #202428;
+}
+
+.banking-sidebar-brand strong,
+.banking-sidebar-brand span {
+  display: block;
+}
+
+.banking-sidebar-brand span {
+  color: #66716d;
+  font-size: 0.84rem;
+}
+
+.banking-sidebar-brand__mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #167762;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.banking-sidebar-nav {
+  display: grid;
+  gap: 8px;
+}
+
+.banking-sidebar-nav a {
+  padding: 13px 16px;
+  border-radius: 999px;
+  color: #2a322f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.banking-sidebar-nav a:hover,
+.banking-sidebar-nav a:first-child {
+  background: #e2f0ec;
+  color: #0f6b59;
+}
+
+.banking-main {
+  padding: 26px 38px 42px;
+}
+
+.banking-topbar-actions,
+.banking-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.banking-status-pill {
+  min-height: 38px;
+  padding: 0 16px;
+  background: #e2f0ec;
+  color: #08725f;
+}
+
+.banking-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(360px, 0.8fr);
+  gap: 22px;
+  align-items: center;
+  margin-top: 18px;
+  background: linear-gradient(135deg, #154f43 0%, #0f453b 100%);
+  color: #f7fbf9;
+}
+
+.banking-hero-copy p,
+.banking-hero-copy .banking-kicker {
+  color: rgba(239, 247, 251, 0.82);
+}
+
+.banking-hero-copy h2 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(1.8rem, 2.6vw, 2.5rem);
+}
+
+.banking-hero-stats {
+  display: grid;
+  gap: 14px;
+}
+
+.banking-hero-stat {
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.banking-hero-stat span {
+  display: block;
+  color: rgba(239, 247, 251, 0.74);
+  font-size: 0.88rem;
+}
+
+.banking-hero-stat strong {
+  display: block;
+  margin-top: 10px;
+  color: #ffffff;
+  font-size: 1.7rem;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.insurance-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background:
+    linear-gradient(180deg, rgba(246, 248, 250, 0.95), rgba(235, 241, 246, 0.98)),
+    radial-gradient(circle at top left, rgba(72, 119, 112, 0.14), transparent 28%);
+}
+
+.insurance-login-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 480px);
+  gap: 24px;
+  width: min(100%, 1040px);
+}
+
+.insurance-login-panel,
+.insurance-login-form,
+.content-card,
+.hero-card,
+.detail-card,
+.premium-summary {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 22px 54px rgba(15, 23, 42, 0.08);
+}
+
+.insurance-login-panel {
+  display: grid;
+  align-content: center;
+  gap: 20px;
+  min-height: 460px;
+  padding: 34px;
+  background:
+    linear-gradient(155deg, rgba(34, 83, 76, 0.98), rgba(28, 74, 104, 0.94)),
+    linear-gradient(180deg, #244f4b 0%, #214765 100%);
+  color: #f8fafc;
+}
+
+.insurance-login-panel h1,
+.hero-card h1,
+.section-heading h2 {
+  margin: 0;
+  color: inherit;
+}
+
+.insurance-login-panel h1 {
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  line-height: 1;
+}
+
+.insurance-login-panel p,
+.section-heading p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.insurance-login-panel p,
+.insurance-login-panel .hero-card__eyebrow {
+  color: rgba(248, 250, 252, 0.78);
+}
+
+.hero-card__eyebrow,
+.eyebrow {
+  color: #2b665e;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.feature-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.feature-stack div {
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(248, 250, 252, 0.9);
+}
+
+.insurance-login-form,
+.stack-form,
+.form-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.insurance-login-form {
+  align-content: center;
+  min-height: 460px;
+  padding: 34px;
+}
+
+.section-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.insurance-login-form label,
+.stack-form label,
+.form-grid label {
+  display: grid;
+  gap: 8px;
+  color: #334155;
+  font-weight: 700;
+}
+
+.insurance-login-form input,
+.stack-form input,
+.stack-form select,
+.form-grid input,
+.form-grid select {
+  min-height: 54px;
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0 16px;
+  font: inherit;
+}
+
+.insurance-login-form input:focus,
+.stack-form input:focus,
+.stack-form select:focus,
+.form-grid input:focus,
+.form-grid select:focus {
+  outline: none;
+  border-color: #2b665e;
+  box-shadow: 0 0 0 4px rgba(43, 102, 94, 0.12);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 16px;
+  padding: 0 18px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.primary-button {
+  border: 0;
+  color: #ffffff;
+  background: linear-gradient(135deg, #285a52 0%, #214765 100%);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.secondary-button,
+.ghost-button {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #285a52;
+}
+
+.error-text {
+  margin: 0;
+  color: #b42318;
+  font-weight: 700;
+}
+
+.success-text {
+  margin: 0;
+  color: #16784c;
+  font-weight: 700;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.topbar,
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #12332f;
+  text-decoration: none;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 24px;
+  width: min(100%, 1180px);
+  margin: 28px auto 0;
+}
+
+.hero-card,
+.content-card {
+  padding: 28px;
+}
+
+.hero-card {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  background:
+    linear-gradient(155deg, rgba(34, 83, 76, 0.98), rgba(28, 74, 104, 0.94)),
+    linear-gradient(180deg, #244f4b 0%, #214765 100%);
+  color: #ffffff;
+}
+
+.hero-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+.stepper {
+  display: grid;
+  gap: 10px;
+}
+
+.stepper-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.stepper-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.stepper-dot.active {
+  background: #ffffff;
+  color: #285a52;
+  font-weight: 800;
+}
+
+.quote-pill {
+  border-radius: 999px;
+  padding: 12px 16px;
+  background: #e8f2f0;
+  color: #285a52;
+  font-weight: 800;
+}
+
+.form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.review-layout {
+  display: grid;
+  gap: 22px;
+}
+
+.section-heading__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.section-heading h2 {
+  font-size: clamp(1.8rem, 2vw, 2.5rem);
+}
+
+fieldset {
+  display: grid;
+  gap: 8px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+}
+
+.input-prefix-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: white;
+}
+
+.input-prefix {
+  padding: 0 0 0 16px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.input-prefix-wrap input {
+  border: 0;
+  background: transparent;
+}
+
+.field-error {
+  color: #b42318;
+  font-size: 0.88rem;
+}
+
+.field-hint {
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-transform: capitalize;
+}
+
+.section-copy {
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.inline-choice legend {
+  margin-bottom: 8px;
+}
+
+.pill-group {
+  display: flex;
+  gap: 10px;
+}
+
+.pill {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: white;
+  padding: 12px 18px;
+  cursor: pointer;
+}
+
+.pill.active {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+  color: white;
+}
+
+.checkbox-row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+}
+
+.checkbox-row input {
+  margin-top: 4px;
+}
+
+.full-span {
+  grid-column: 1 / -1;
+}
+
+.actions.full-span,
+.stack-form .actions,
+.review-layout .actions {
+  justify-content: flex-end;
+}
+
+.highlight-banner,
+.premium-summary,
+.detail-card,
+.table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+}
+
+.highlight-banner {
+  padding: 18px 20px;
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.premium-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.premium-summary span {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.premium-summary strong {
+  font-size: 1.5rem;
+}
+
+.detail-card {
+  padding: 24px;
+}
+
+.detail-card h3 {
+  margin: 0 0 16px;
+  font-size: 1.5rem;
+}
+
+.detail-card dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+  margin: 0;
+}
+
+.detail-card dl > div {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+.detail-card dt {
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.detail-card dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.admin-iframe-shell {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--card);
+  overflow: hidden;
+}
+
+.admin-iframe {
+  display: block;
+  width: 100%;
+  min-height: 520px;
+  border: 0;
+  background: transparent;
+}
+
+.embedded-admin-page {
+  padding: 18px;
+  background: transparent;
+}
+
+.admin-toolbar,
+.admin-heading-actions,
+.admin-row-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admin-toolbar {
+  margin-bottom: 16px;
+}
+
+.admin-toolbar__button {
+  min-width: 140px;
+}
+
+.admin-search-bar {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+  max-width: 520px;
+}
+
+.admin-search-field {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  height: auto;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  line-height: 1;
+}
+
+.admin-action-button.ghost {
+  color: #1f3140;
+}
+
+.admin-action-button.secondary-button {
+  color: #b42318;
+}
+
+.admin-action-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.admin-cell-input {
+  min-width: 120px;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.admin-premium-edit {
+  display: grid;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.signature-panel {
+  gap: 22px;
+}
+
+.signature-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.signature-panel__header h3 {
+  margin: 8px 0 0;
+  font-size: 1.7rem;
+}
+
+.signature-pad {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: white;
+  min-height: 220px;
+  padding: 18px;
+}
+
+.signature-pad__canvas {
+  width: 100%;
+  height: 180px;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.signature-pad__line {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 34px;
+  border-top: 1px solid rgba(30, 41, 34, 0.24);
+}
+
+.underwriting-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.recipient-builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 18px;
+}
+
+.recipient-column,
+.recipient-dropzone {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: white;
+  padding: 18px;
+}
+
+.recipient-column h4,
+.recipient-dropzone h4 {
+  margin: 0 0 14px;
+  font-size: 1rem;
+}
+
+.recipient-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.recipient-chip {
+  border: 1px solid rgba(20, 93, 50, 0.16);
+  background: #f8fbf7;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: grab;
+}
+
+.recipient-chip.active {
+  background: linear-gradient(135deg, rgba(32, 132, 74, 0.12), rgba(230, 85, 98, 0.12));
+  cursor: pointer;
+}
+
+.dropzone-empty {
+  color: var(--muted);
+  margin: 0;
+}
+
+.email-textarea {
+  width: 100%;
+  min-height: 110px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+  resize: vertical;
+  background: white;
+  color: var(--text);
+  font: inherit;
+}
+
+.split-actions {
+  justify-content: space-between;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(20, 41, 34, 0.38);
+}
+
+.modal-card {
+  width: min(100%, 460px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: 0 24px 80px rgba(33, 51, 37, 0.2);
+  padding: 28px;
+}
+
+.modal-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.7rem;
+}
+
+.modal-card p {
+  margin: 0 0 22px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.quotes-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+}
+
+.quotes-table th,
+.quotes-table td {
+  text-align: left;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.quotes-table th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--muted);
+}
+
+.banking-card-grid,
+.banking-admin-grid {
+  display: grid;
+  gap: 26px;
+  margin-top: 26px;
+}
+
+.banking-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.banking-admin-grid {
+  grid-template-columns: minmax(320px, 460px) minmax(0, 1fr);
+  margin-top: 28px;
+}
+
+.banking-info-card {
+  min-height: 250px;
+  padding: 26px;
+  background: #ffffff;
+}
+
+.banking-card-eyebrow {
+  min-height: 28px;
+  width: fit-content;
+  padding: 0 14px;
+  background: #e2f0ec;
+  color: #08725f;
+}
+
+.banking-balance-number {
+  margin-top: 16px;
+  color: #202428;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-size: clamp(2.1rem, 2.7vw, 2.7rem);
+  font-weight: 800;
+}
+
+.banking-info-copy {
+  min-height: 62px;
+  line-height: 1.45;
+}
+
+.banking-card-link {
+  min-width: 148px;
+  margin-top: 24px;
+  border-radius: 999px;
+}
+
+.banking-section-card {
+  margin-top: 28px;
+  overflow: hidden;
+}
+
+.banking-section-heading {
+  margin-bottom: 18px;
+}
+
+.banking-section-banner {
+  margin-bottom: 18px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  background: #e2f0ec;
+  color: #0f6b59;
+  font-weight: 600;
+}
+
+.banking-statement-controls {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 20px;
+}
+
+.banking-table-wrap {
+  overflow-x: auto;
+  margin-top: 20px;
+  border: none;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.banking-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.banking-table th,
+.banking-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e2e7e4;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.banking-table th {
+  color: #202428;
+  background: #ffffff;
+  font-size: 0.9rem;
+}
+
+.banking-table td {
+  color: #303734;
+}
+
+.banking-transaction-direction {
+  font-weight: 800;
+}
+
+.banking-transaction-direction--credit {
+  color: #08725f;
+}
+
+.banking-transaction-direction--debit {
+  color: #c8332c;
+}
+
+.banking-admin-account-list {
+  display: grid;
+  gap: 14px;
+}
+
+.banking-admin-account-card {
+  padding: 20px;
+}
+
+.banking-admin-account-card h3,
+.banking-admin-account-card p,
+.banking-admin-account-card strong {
+  margin: 0;
+}
+
+.banking-admin-account-card p {
+  margin-top: 8px;
+  color: #5e6865;
+}
+
+.banking-admin-account-card strong {
+  display: block;
+  margin-top: 16px;
+  color: #202428;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-size: 1.6rem;
+}
+
+.banking-error-text,
+.banking-success-text {
+  margin: 16px 0 0;
+  font-weight: 700;
+}
+
+.banking-error-text {
+  color: #c8332c;
+}
+
+.banking-success-text {
+  color: #08725f;
+}
+
+/* Local insurance UI redesign: apply + underwriting only. */
+.page-shell--apply,
+.page-shell--underwriting {
+  --insurance-ink: #172133;
+  --insurance-muted: #5c6a7c;
+  --insurance-line: #d9e3ec;
+  --insurance-surface: #ffffff;
+  --insurance-soft: #f3f7fa;
+  --insurance-green: #176b5b;
+  --insurance-green-dark: #0f4f48;
+  --insurance-blue: #205a7a;
+  min-height: 100vh;
+  padding: 16px 20px 24px;
+  background:
+    linear-gradient(180deg, rgba(248, 251, 252, 0.98), rgba(238, 244, 247, 0.96)),
+    radial-gradient(circle at 14% 0%, rgba(23, 107, 91, 0.12), transparent 28%);
+  color: var(--insurance-ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.page-shell--apply .topbar,
+.page-shell--underwriting .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 62px;
+  padding: 10px 0;
+  background: rgba(248, 251, 252, 0.86);
+  backdrop-filter: blur(14px);
+}
+
+.page-shell--apply .brand,
+.page-shell--underwriting .brand {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.page-shell--apply .brand-logo,
+.page-shell--underwriting .brand-logo {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.page-shell--apply .topbar-actions,
+.page-shell--underwriting .topbar-actions {
+  gap: 8px;
+}
+
+.page-shell--apply .ghost-button,
+.page-shell--underwriting .ghost-button {
+  min-height: 38px;
+  border-radius: 10px;
+  padding: 0 14px;
+  border-color: #c7d6e3;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--insurance-green-dark);
+  font-size: 0.92rem;
+  box-shadow: 0 6px 18px rgba(15, 79, 72, 0.05);
+}
+
+.page-shell--apply .quote-pill,
+.page-shell--underwriting .quote-pill {
+  min-height: 34px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #edf5f2;
+  color: var(--insurance-green-dark);
+  font-size: 0.88rem;
+}
+
+.brand-menu {
+  position: relative;
+}
+
+.brand-menu__dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 150px;
+  padding: 6px;
+  border: 1px solid var(--insurance-line);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 16px 34px rgba(23, 33, 51, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+}
+
+.brand-menu:hover .brand-menu__dropdown,
+.brand-menu:focus-within .brand-menu__dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.brand-menu__item {
+  display: block;
+  border-radius: 8px;
+  padding: 8px 10px;
+  color: var(--insurance-ink);
+  text-decoration: none;
+}
+
+.brand-menu__item:hover,
+.brand-menu__item:focus-visible {
+  background: var(--insurance-soft);
+  outline: none;
+}
+
+.page-grid--apply,
+.page-grid--underwriting {
+  grid-template-columns: 244px minmax(0, 1fr);
+  gap: 16px;
+  width: min(100%, 1360px);
+  margin: 12px auto 0;
+  align-items: start;
+}
+
+.page-grid--underwriting {
+  width: min(100%, 1440px);
+}
+
+.hero-card--apply,
+.hero-card--underwriting {
+  position: sticky;
+  top: 78px;
+  min-height: calc(100vh - 112px);
+  padding: 18px;
+  gap: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(19, 91, 79, 0.96), rgba(21, 72, 92, 0.98)),
+    #154c5f;
+  box-shadow: 0 18px 40px rgba(18, 58, 65, 0.14);
+}
+
+.hero-card--apply h1,
+.hero-card--underwriting h1 {
+  font-size: 1.18rem;
+  line-height: 1.25;
+}
+
+.hero-card--apply p,
+.hero-card--underwriting p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.hero-card--apply .hero-card__eyebrow,
+.hero-card--underwriting .hero-card__eyebrow {
+  color: rgba(204, 236, 227, 0.76);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+.hero-card--apply .feature-stack,
+.hero-card--underwriting .feature-stack {
+  gap: 8px;
+}
+
+.hero-card--apply .feature-stack div,
+.hero-card--underwriting .feature-stack div {
+  min-height: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
+.hero-card--apply .stepper,
+.hero-card--underwriting .stepper {
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.hero-card--apply .stepper-row,
+.hero-card--underwriting .stepper-row {
+  min-height: 36px;
+  border-radius: 10px;
+  padding: 4px 6px;
+  font-size: 0.86rem;
+}
+
+.hero-card--apply .stepper-row.current,
+.hero-card--underwriting .stepper-row.current {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.hero-card--apply .stepper-dot,
+.hero-card--underwriting .stepper-dot {
+  width: 24px;
+  height: 24px;
+  font-size: 0.78rem;
+}
+
+.content-card--apply,
+.content-card--underwriting {
+  min-height: calc(100vh - 112px);
+  border-radius: 16px;
+  border: 1px solid rgba(23, 33, 51, 0.08);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 42px rgba(23, 33, 51, 0.08);
+  padding: 24px;
+}
+
+.content-card--apply .form-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.content-card--apply .section-heading,
+.content-card--underwriting .section-heading {
+  grid-column: 1 / -1;
+  gap: 6px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--insurance-line);
+}
+
+.content-card--apply .eyebrow,
+.content-card--underwriting .eyebrow {
+  color: var(--insurance-green);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+}
+
+.content-card--apply .section-heading h2,
+.content-card--underwriting .section-heading h2 {
+  color: var(--insurance-ink);
+  font-family: inherit;
+  font-size: clamp(1.65rem, 2vw, 2.25rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.content-card--apply .section-heading p,
+.content-card--underwriting .section-heading p {
+  max-width: 720px;
+  color: var(--insurance-muted);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.content-card--apply label,
+.content-card--apply fieldset,
+.content-card--underwriting label {
+  gap: 6px;
+  color: #26364a;
+  font-size: 0.91rem;
+  font-weight: 700;
+}
+
+.content-card--apply input,
+.content-card--apply select,
+.content-card--underwriting input,
+.content-card--underwriting select,
+.content-card--underwriting textarea {
+  min-height: 44px;
+  border-radius: 10px;
+  border-color: #c9d6e2;
+  background: #ffffff;
+  color: var(--insurance-ink);
+  font-size: 0.94rem;
+}
+
+.content-card--apply input,
+.content-card--apply select,
+.content-card--underwriting input,
+.content-card--underwriting select {
+  padding: 0 12px;
+}
+
+.content-card--apply .input-prefix-wrap {
+  min-height: 44px;
+  border-radius: 10px;
+  border-color: #c9d6e2;
+}
+
+.content-card--apply .input-prefix {
+  padding-left: 12px;
+  font-size: 0.88rem;
+}
+
+.content-card--apply .pill-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.content-card--apply .pill {
+  min-height: 44px;
+  border-radius: 10px;
+  padding: 0 12px;
+  color: #284457;
+  font-weight: 800;
+}
+
+.content-card--apply .pill.active {
+  background: linear-gradient(135deg, var(--insurance-green) 0%, var(--insurance-blue) 100%);
+}
+
+.content-card--apply .checkbox-row {
+  align-items: center;
+  margin-top: 2px;
+  padding: 12px;
+  border: 1px solid var(--insurance-line);
+  border-radius: 12px;
+  background: var(--insurance-soft);
+}
+
+.content-card--apply .checkbox-row input {
+  min-height: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.content-card--apply .actions.full-span,
+.content-card--apply .stack-form .actions,
+.content-card--apply .review-layout .actions {
+  padding-top: 4px;
+  justify-content: flex-end;
+}
+
+.content-card--apply .primary-button,
+.content-card--underwriting .primary-button,
+.content-card--underwriting .secondary-button {
+  min-height: 44px;
+  border-radius: 10px;
+  padding: 0 18px;
+  box-shadow: 0 10px 22px rgba(23, 107, 91, 0.14);
+}
+
+.content-card--apply .stack-form {
+  max-width: 760px;
+  gap: 16px;
+}
+
+.content-card--apply .review-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.78fr);
+  gap: 16px;
+}
+
+.content-card--apply .review-layout .section-heading,
+.content-card--apply .review-layout .highlight-banner,
+.content-card--apply .review-layout .premium-summary,
+.content-card--apply .review-layout .checkbox-row {
+  grid-column: 1 / -1;
+}
+
+.content-card--apply .highlight-banner {
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #fff7ed;
+  color: #9a4a12;
+}
+
+.content-card--apply .premium-summary,
+.content-card--underwriting .premium-summary {
+  border-radius: 14px;
+  padding: 16px;
+  background: linear-gradient(180deg, #f8fbfc 0%, #f2f7f9 100%);
+}
+
+.content-card--apply .premium-summary strong,
+.content-card--underwriting .premium-summary strong {
+  color: var(--insurance-ink);
+  font-family: inherit;
+  font-size: 1.12rem;
+}
+
+.content-card--apply .detail-card,
+.content-card--underwriting .detail-card {
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.content-card--apply .detail-card h3,
+.content-card--underwriting .detail-card h3 {
+  color: var(--insurance-ink);
+  font-family: inherit;
+  font-size: 1.1rem;
+}
+
+.content-card--apply .detail-card dl,
+.content-card--underwriting .detail-card dl {
+  gap: 10px 14px;
+}
+
+.content-card--apply .detail-card dl > div,
+.content-card--underwriting .detail-card dl > div {
+  padding-top: 10px;
+}
+
+.content-card--apply .detail-card dt,
+.content-card--underwriting .detail-card dt {
+  font-size: 0.78rem;
+}
+
+.content-card--apply .detail-card dd,
+.content-card--underwriting .detail-card dd {
+  overflow-wrap: anywhere;
+  font-size: 0.92rem;
+}
+
+.content-card--underwriting {
+  padding: 22px;
+}
+
+.content-card--underwriting .underwriting-workbench {
+  gap: 16px;
+}
+
+.content-card--underwriting .underwriting-search {
+  grid-template-columns: minmax(260px, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  max-width: 780px;
+}
+
+.content-card--underwriting .review-layout {
+  gap: 14px;
+}
+
+.underwriting-case-summary {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  align-items: stretch;
+}
+
+.underwriting-case-summary > div {
+  min-width: 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.underwriting-status-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 28px;
+  border-radius: 999px;
+  padding: 0 10px;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.04em;
+}
+
+.underwriting-status-badge--pending {
+  background: #fff7ed;
+  color: #a84910 !important;
+}
+
+.underwriting-status-badge--otp-sent {
+  background: #eaf3ff;
+  color: #1d5b96 !important;
+}
+
+.underwriting-status-badge--approved {
+  background: #e9f8f1;
+  color: #16784c !important;
+}
+
+.underwriting-status-badge--rejected {
+  background: #fff1f1;
+  color: #b42318 !important;
+}
+
+.underwriting-applicant-card dl {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.underwriting-decision-panel {
+  justify-content: flex-start;
+  padding: 12px;
+  border: 1px solid var(--insurance-line);
+  border-radius: 14px;
+  background: var(--insurance-soft);
+}
+
+.underwriting-decision-panel .secondary-button {
+  color: #a3271d;
+  box-shadow: none;
+}
+
+.underwriting-check-card,
+.underwriting-manual-decision-card {
+  background: #fbfdfd;
+}
+
+.underwriting-radio-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.content-card--underwriting .underwriting-radio-row label {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--insurance-line);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--insurance-text);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.content-card--underwriting .underwriting-radio-row input {
+  width: auto;
+  min-height: auto;
+  accent-color: var(--insurance-brand);
+}
+
+.underwriting-recipient-card {
+  background: #fbfdfd;
+}
+
+.content-card--underwriting .recipient-builder {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+
+.content-card--underwriting .recipient-column,
+.content-card--underwriting .recipient-dropzone {
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.content-card--underwriting .recipient-chip {
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-size: 0.84rem;
+}
+
+.content-card--underwriting .email-textarea {
+  min-height: 82px;
+  padding: 10px 12px;
+}
+
+@media (max-width: 960px) {
+  .insurance-login-card,
+  .banking-app-access-card,
+  .page-grid,
+  .form-grid,
+  .recipient-builder {
+    grid-template-columns: 1fr;
+  }
+
+  .premium-summary,
+  .topbar,
+  .split-actions,
+  .signature-panel__header,
+  .section-heading__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .underwriting-search {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card dl {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-login-card,
+  .banking-dashboard-page,
+  .banking-admin-grid,
+  .banking-card-grid,
+  .banking-statement-controls,
+  .banking-hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-sidebar {
+    display: none;
+  }
+
+  .banking-sign-in-button {
+    min-width: 100%;
+  }
+
+  .banking-login-footer {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .banking-login-header,
+  .banking-admin-header,
+  .banking-topbar {
+    flex-direction: column;
+  }
+}
+
+/* Claude-aligned banking redesign correction for the root banking host. */
+.banking-login-page,
+.banking-admin-page,
+.banking-dashboard-page,
+.banking-app-access-page {
+  color: #202124;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+.banking-login-page,
+.banking-admin-page,
+.banking-app-access-page {
+  padding: 40px;
+  background: #fafcfb;
+}
+
+.banking-login-header,
+.banking-admin-header,
+.banking-app-access-header {
+  width: min(100%, 1320px);
+  max-width: none;
+  margin: 0;
+}
+
+.banking-login-title {
+  max-width: 760px;
+}
+
+.banking-kicker {
+  color: #006d5b;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.banking-login-header h1,
+.banking-admin-header h1,
+.banking-app-access-header h1 {
+  color: #24272b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.banking-login-subtitle,
+.banking-subtle-text,
+.banking-form-heading p,
+.banking-info-card p,
+.banking-login-security-note,
+.banking-section-heading p {
+  color: #5f6764;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.banking-login-card,
+.banking-app-access-card {
+  grid-template-columns: minmax(520px, 610px) minmax(560px, 680px);
+  gap: 24px;
+  width: min(100%, 1320px);
+  max-width: none;
+  margin: 40px 0 0;
+}
+
+.banking-login-panel,
+.banking-login-form,
+.banking-app-access-panel,
+.banking-app-access-form,
+.banking-section-card,
+.banking-info-card,
+.banking-hero-card,
+.banking-admin-account-card {
+  border: 1px solid #d9e0dc;
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.banking-login-panel,
+.banking-app-access-panel {
+  min-height: 410px;
+  padding: 38px;
+  background: #124f42;
+}
+
+.banking-login-form,
+.banking-app-access-form {
+  min-height: 410px;
+  padding: 44px;
+  background: #ffffff;
+}
+
+.banking-login-panel .banking-panel-label,
+.banking-app-access-panel .banking-panel-label {
+  color: #eef8f5;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.banking-login-badge {
+  min-height: 28px;
+  padding: 0 17px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.banking-login-metric strong {
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.banking-login-credentials {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.banking-credential-chip {
+  justify-content: center;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.banking-login-points {
+  gap: 13px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.banking-form-heading h2,
+.banking-section-heading h2,
+.banking-info-card h2 {
+  color: #24272b;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+.banking-form-heading h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.banking-field span {
+  color: #565f5c;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.banking-field input,
+.banking-field select {
+  min-height: 50px;
+  border: 1px solid #d5ddd9;
+  border-radius: 8px;
+  background: #fffdf9;
+  color: #202124;
+}
+
+.banking-sign-in-button,
+.banking-primary-button {
+  min-height: 48px;
+  border-radius: 12px;
+  background: #177963;
+  box-shadow: 0 12px 24px rgba(23, 121, 99, 0.18);
+}
+
+.banking-outline-button,
+.banking-outline-link,
+.banking-card-link {
+  min-height: 48px;
+  border: 1px solid #08725f;
+  border-radius: 12px;
+  color: #08725f;
+  background: #ffffff;
+}
+
+.banking-dashboard-page {
+  grid-template-columns: 260px minmax(0, 1fr);
+  background: #eef3f1;
+}
+
+.banking-sidebar {
+  padding: 28px 14px;
+  background: #ffffff;
+}
+
+.banking-sidebar-brand__mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #177963;
+  color: #ffffff;
+  font-size: 0.78rem;
+}
+
+#banking-sidebar-notifications-link,
+#banking-sidebar-accounts-link,
+#banking-sidebar-profile-link {
+  display: none;
+}
+
+.banking-sidebar-nav a {
+  min-height: 42px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  color: #2b312f;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.banking-sidebar-nav a:hover,
+.banking-sidebar-nav a:first-child {
+  background: #deeee9;
+  color: #08725f;
+}
+
+.banking-main {
+  padding: 28px 30px 34px;
+}
+
+.banking-topbar h1 {
+  color: #202124;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.banking-status-pill {
+  min-height: 48px;
+  padding: 0 18px;
+  background: #deeee9;
+  color: #08725f;
+}
+
+.banking-collapse-toggle {
+  display: none;
+}
+
+.banking-collapsible-heading--hero h2 {
+  color: #202124;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.banking-hero-card {
+  grid-template-columns: minmax(0, 1.3fr) minmax(360px, 0.7fr);
+  min-height: 150px;
+  margin-top: 22px;
+  padding: 32px;
+  border: none;
+  background: #124f42;
+}
+
+.banking-hero-stat {
+  min-height: 92px;
+  padding: 18px 22px;
+  border-radius: 12px;
+}
+
+.banking-card-grid {
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.banking-info-card {
+  min-height: 190px;
+  padding: 26px;
+  border-radius: 14px;
+}
+
+.banking-card-eyebrow {
+  min-height: 26px;
+  padding: 0 13px;
+  background: #deeee9;
+  color: #08725f;
+}
+
+.banking-balance-number {
+  color: #202124;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 2.55rem;
+  font-weight: 700;
+}
+
+.banking-section-card {
+  margin-top: 22px;
+  padding: 32px;
+  border-radius: 14px;
+}
+
+.banking-section-banner {
+  border-radius: 8px;
+  background: #deeee9;
+  color: #08725f;
+}
+
+.banking-statement-controls {
+  grid-template-columns: minmax(220px, 1fr) minmax(280px, 1fr) minmax(220px, 0.9fr);
+}
+
+.banking-table td.banking-transaction-direction--credit {
+  color: #08725f;
+}
+
+.banking-table td.banking-transaction-direction--debit {
+  color: #c8332c;
+}
+
+@media (max-width: 960px) {
+  .banking-login-card,
+  .banking-app-access-card,
+  .banking-dashboard-page,
+  .banking-card-grid,
+  .banking-hero-card,
+  .banking-hero-stats,
+  .banking-statement-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-login-page,
+  .banking-admin-page,
+  .banking-app-access-page,
+  .banking-main {
+    padding: 20px;
+  }
+
+  .banking-login-panel,
+  .banking-login-form,
+  .banking-app-access-panel,
+  .banking-app-access-form {
+    min-height: auto;
+  }
+}
+
+/* Final local polish for banking host/root screens. */
+.banking-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.banking-brand-lockup .banking-kicker {
+  margin: 0;
+}
+
+.banking-brand-mark,
+.banking-panel-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #177963;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.banking-brand-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+}
+
+.banking-panel-icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.banking-panel-copy {
+  max-width: 300px;
+  margin: 7px 0 0;
+  color: rgba(238, 248, 245, 0.78);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.banking-login-card,
+.banking-app-access-card {
+  grid-template-columns: minmax(500px, 610px) minmax(520px, 680px);
+  margin-top: 34px;
+}
+
+.banking-login-panel,
+.banking-login-form,
+.banking-app-access-panel,
+.banking-app-access-form {
+  min-height: 382px;
+}
+
+.banking-login-form,
+.banking-app-access-form {
+  padding: 40px 44px;
+}
+
+.banking-login-panel,
+.banking-app-access-panel {
+  padding: 36px 38px;
+}
+
+.banking-login-panel .banking-panel-label,
+.banking-app-access-panel .banking-panel-label {
+  margin: 0;
+}
+
+.banking-login-metric {
+  margin: 24px 0 18px;
+}
+
+.banking-login-credentials {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+  max-width: 532px;
+}
+
+.banking-credential-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 12px;
+  font-size: 0.8rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.banking-login-points {
+  gap: 11px;
+  margin-top: 22px;
+  padding-top: 20px;
+}
+
+.banking-dashboard-page {
+  grid-template-columns: 256px minmax(0, 1fr);
+}
+
+.banking-sidebar {
+  padding: 26px 14px;
+}
+
+.banking-sidebar-brand__mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  font-size: 0.92rem;
+}
+
+.banking-main {
+  padding: 26px 28px 32px;
+}
+
+.banking-hero-card {
+  min-height: 136px;
+  margin-top: 20px;
+  padding: 28px 30px;
+}
+
+.banking-hero-stat {
+  min-height: 84px;
+  padding: 16px 20px;
+}
+
+.banking-card-grid {
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.banking-info-card {
+  min-height: 162px;
+  padding: 22px 24px;
+}
+
+.banking-balance-number {
+  font-size: 2.25rem;
+}
+
+.banking-info-copy {
+  min-height: 34px;
+}
+
+.banking-section-card {
+  margin-top: 18px;
+  padding: 26px 28px;
+}
+
+.banking-dashboard-transfer-form {
+  gap: 14px 20px;
+}
+
+@media (max-width: 960px) {
+  .banking-login-card,
+  .banking-app-access-card {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-login-panel,
+  .banking-login-form,
+  .banking-app-access-panel,
+  .banking-app-access-form {
+    min-height: auto;
+  }
+}
