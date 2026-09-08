@@ -1,11 +1,5 @@
 import nodemailer from "nodemailer";
 
-type SendOtpEmailArgs = {
-  otp: string;
-  quoteId: string;
-  recipients: string[];
-};
-
 type MailAttachment = {
   filename: string;
   content: Buffer;
@@ -65,15 +59,6 @@ async function sendMail({ to, subject, text, html, attachments }: SendMailArgs) 
     delivered: true,
     mode: "smtp" as const
   };
-}
-
-export async function sendOtpEmail({ otp, quoteId, recipients }: SendOtpEmailArgs) {
-  return sendMail({
-    to: recipients,
-    subject: `Watermelon OTP for quote ${quoteId}`,
-    text: `Your Watermelon Life Insurance OTP is ${otp}.`,
-    html: `<p>Your Watermelon Life Insurance OTP is <strong>${otp}</strong>.</p>`
-  });
 }
 
 export async function sendBankingTransferOtpEmail(args: {
