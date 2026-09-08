@@ -12,7 +12,7 @@ export type BankingSession = {
 };
 
 function getSessionSecret() {
-  return process.env.BANKING_SESSION_SECRET ?? process.env.SMTP_PASS ?? "watermelon-banking-local";
+  return process.env.BANKING_SESSION_SECRET ?? "watermelon-banking-local";
 }
 
 function buildSignature(username: string, issuedAt: string) {

@@ -7,7 +7,7 @@ const BANKING_USERS = [
     username: "bankinguser1",
     password: "password",
     displayName: "Banking User 1",
-    email: "bankinguser1@watermelon.us",
+    email: "bankinguser1@example.com",
     accountNumber: "WM-SAV-1001",
     openingBalanceInCents: 21604
   },
@@ -15,7 +15,7 @@ const BANKING_USERS = [
     username: "bankinguser2",
     password: "password",
     displayName: "Banking User 2",
-    email: "bankinguser2@watermelon.us",
+    email: "bankinguser2@example.com",
     accountNumber: "WM-SAV-1002",
     openingBalanceInCents: 23000
   },
@@ -23,7 +23,7 @@ const BANKING_USERS = [
     username: "bankinguser3",
     password: "password",
     displayName: "Banking User 3",
-    email: "bankinguser3@watermelon.us",
+    email: "bankinguser3@example.com",
     accountNumber: "WM-SAV-1003",
     openingBalanceInCents: 45250
   },
@@ -31,7 +31,7 @@ const BANKING_USERS = [
     username: "bankinguser4",
     password: "password",
     displayName: "Banking User 4",
-    email: "bankinguser4@watermelon.us",
+    email: "bankinguser4@example.com",
     accountNumber: "WM-SAV-1004",
     openingBalanceInCents: 38975
   },
@@ -39,7 +39,7 @@ const BANKING_USERS = [
     username: "bankinguser5",
     password: "password",
     displayName: "Banking User 5",
-    email: "bankinguser5@watermelon.us",
+    email: "bankinguser5@example.com",
     accountNumber: "WM-SAV-1005",
     openingBalanceInCents: 61240
   },
@@ -47,7 +47,7 @@ const BANKING_USERS = [
     username: "bankinguser6",
     password: "password",
     displayName: "Banking User 6",
-    email: "bankinguser6@watermelon.us",
+    email: "bankinguser6@example.com",
     accountNumber: "WM-SAV-1006",
     openingBalanceInCents: 27480
   }

@@ -25,7 +25,7 @@ function getSmtpConfig() {
   const port = Number(process.env.SMTP_PORT ?? "587");
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-  const fromEmail = process.env.FROM_EMAIL ?? "noreply@watermelon.us";
+  const fromEmail = process.env.FROM_EMAIL ?? "noreply@example.com";
 
   return { host, port, user, pass, fromEmail };
 }

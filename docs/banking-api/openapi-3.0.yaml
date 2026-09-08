@@ -117,7 +117,7 @@ components:
         email:
           type: string
           format: email
-          example: bankinguser1@watermelon.us
+          example: bankinguser1@example.com
         accountNumber:
           type: string
           example: WM-SAV-1001

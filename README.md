@@ -9,7 +9,7 @@ This repository contains only the Watermelon banking application and banking mob
 - Next.js App Router
 - Prisma
 - PostgreSQL, tested with Supabase Postgres
-- Vercel for hosting
+- Any Node.js-compatible Next.js hosting platform
 - Expo/React Native mobile app under `mobile/banking-mobile`
 
 ## Secrets
@@ -83,3 +83,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000/banking`.
+
+## Deployment and API documentation
+
+See [`DEPLOYMENT_AND_API_GUIDE.md`](DEPLOYMENT_AND_API_GUIDE.md) for database setup, environment variables, deployment configuration, and API examples.

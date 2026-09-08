@@ -16,7 +16,6 @@ function getSessionSecret() {
   return (
     process.env.BANKING_APP_ACCESS_SECRET ??
     process.env.BANKING_SESSION_SECRET ??
-    process.env.SMTP_PASS ??
     "watermelon-banking-app-access-local"
   );
 }

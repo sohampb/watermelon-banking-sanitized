@@ -12,7 +12,7 @@ This folder contains the banking API specification in both OpenAPI 3.1 and 3.0 f
 
 ## Base URLs
 
-- Production: `https://your-watermelon-banking-host.example.com`
+- Hosted app: `https://your-watermelon-banking-host.example.com`
 - Local: `http://localhost:3000`
 
 ## Authentication Model
